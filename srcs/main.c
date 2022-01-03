@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:45 by lde-alen          #+#    #+#             */
-/*   Updated: 2021/12/04 01:59:49 by lde-alen         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:55:45 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,21 @@ static int	ft_select(char *name, t_fr *fr)
 		ft_print_usage();
 		exit(0);
 	}
-	else if (ft_strncmp(name, "mandelbrot", ft_strlen("mandelbrot")) == 0)
+	else if (ft_strncmp(name, "mandelbrot", ft_strlen("mandelbrot")) == 0
+		&& fr->i == ft_strlen("mandelbrot"))
 		fr->fr.t = 1;
 	 else if (ft_strncmp(name, "julia", ft_strlen("julia")) == 0 && fr->ac == 4)
 		fr->fr.t = 2;
-	 else if (ft_strncmp(name, "mandelbar", ft_strlen("mandelbar")) == 0)
+	 else if (ft_strncmp(name, "mandelbar", 9) == 0 && fr->i == 10)
 		fr->fr.t = 3;
-	else if (ft_strncmp(name, "mandelwhat", ft_strlen("mandelwhat")) == 0)
+	else if (ft_strncmp(name, "mandelwhat", ft_strlen("mandelwhat")) == 0
+		&& fr->i == ft_strlen("mandelwhat"))
 		fr->fr.t = 4;
-	else if (ft_strncmp(name, "mandelclown", ft_strlen("mandelclown")) == 0)
+	else if (ft_strncmp(name, "mandelclown", ft_strlen("mandelclown")) == 0
+		&& fr->i == ft_strlen("mandelclown"))
 		fr->fr.t = 5;
-	else if (ft_strncmp(name, "hheggy42", ft_strlen("hheggy42")) == 0)
+	else if (ft_strncmp(name, "hheggy42", ft_strlen("hheggy42")) == 0
+		&& fr->i == ft_strlen("hheggy42"))
 		fr->fr.t = 6;
 	else
 		ft_fputstr("Error: Invalid input. Please run ./fractol help\n");
@@ -56,7 +60,7 @@ void	fract_ini(t_fr *fr)
 	fr->fr.yi = -1.20;
 	fr->ms.st = 0;
 	fr->fr.sc = 300.00;
-	fr->fr.it = 50;
+	fr->fr.it = 1000;
 	fr->fr.w = 0;
 	fr->ms.x = WIN_W / 2;
 	fr->ms.y = WIN_H / 2;
@@ -114,6 +118,7 @@ int	main(int ac, char **av)
 	{
 		fr.ac = ac;
 		fr.av = av;
+		fr.i = ft_strlen(av[1]);
 		if (!ft_select(av[1], &fr))
 			ft_fputstr("Error: Invalid input please try again.");
 		ft_mlx_init(&fr);

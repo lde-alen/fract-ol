@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:20 by lde-alen          #+#    #+#             */
-/*   Updated: 2021/12/04 02:00:47 by lde-alen         ###   ########.fr       */
+/*   Updated: 2021/12/11 18:17:32 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_fr
 	t_ms	ms;
 	int		ac;
 	char	**av;
+	size_t	i;
 }				t_fr;
 
 /*
@@ -90,7 +91,7 @@ typedef struct s_fr
 # define WIN_W			1080
 # define WIN_H			720
 # define SC_LIM			10000000000
-# define SC_PRC			1.01
+# define SC_PRC			1.3
 
 /*
 	Macraaazzzz for the Keyboard keys (MacOs QWERTY)
