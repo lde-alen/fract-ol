@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:20 by lde-alen          #+#    #+#             */
-/*   Updated: 2022/04/24 21:13:50 by lde-alen         ###   ########.fr       */
+/*   Updated: 2022/04/24 21:24:37 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,49 @@
 */
 
 # include "../libft/libft.h"
-# include "../miniLibx_linux/mlx.h"
-# include "../miniLibx/mlx.h"
+# ifdef __linux__
+#  include "../miniLibx_linux/mlx.h"
+# else
+#  include "../miniLibx/mlx.h"
+# endif
+
+# ifdef __linux__
+#  define MLB			1
+#  define MRB			3
+#  define MMB			2
+#  define MWU			4
+#  define MWD			5
+#  define KEY_W			119
+#  define KEY_S			115
+#  define KEY_Z			122
+#  define KEY_X			120
+#  define KEY_C			99
+#  define KEY_V			118
+#  define KEY_R			114
+#  define KEY_ESC		65307
+#  define ARROW_UP		65362
+#  define ARROW_DOWN	65364
+#  define ARROW_LEFT	65361
+#  define ARROW_RIGHT	65363
+# else
+#  define MLB			0x01
+#  define MRB			0x02
+#  define MMB			0x03
+#  define MWU			0x04
+#  define MWD			0x05
+#  define KEY_W			0x0D
+#  define KEY_S			0x01
+#  define KEY_Z			0x06
+#  define KEY_X			0x07
+#  define KEY_C			0x08
+#  define KEY_V			0x09
+#  define KEY_R			0x0F
+#  define KEY_ESC		0x35
+#  define ARROW_UP		0x7E
+#  define ARROW_DOWN	0x7D
+#  define ARROW_LEFT	0x7B
+#  define ARROW_RIGHT	0x7C
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -97,43 +138,8 @@ typedef struct s_fr
 /*
 	Macraaazzzz for the Keyboard keys (MacOs QWERTY)
 */
-# ifdef __linux__
-#  define MLB			1
-#  define MRB			3
-#  define MMB			2
-#  define MWU			4
-#  define MWD			5
-#  define KEY_W			119
-#  define KEY_S			115
-#  define KEY_Z			122
-#  define KEY_X			120
-#  define KEY_C			99
-#  define KEY_V			118
-#  define KEY_R			114
-#  define KEY_ESC		65307
-#  define ARROW_UP		65362
-#  define ARROW_DOWN	65364
-#  define ARROW_LEFT	65361
-#  define ARROW_RIGHT	65363
-# else
-#  define MLB			0x01
-#  define MRB			0x02
-#  define MMB			0x03
-#  define MWU			0x04
-#  define MWD			0x05
-#  define KEY_W			0x0D
-#  define KEY_S			0x01
-#  define KEY_Z			0x06
-#  define KEY_X			0x07
-#  define KEY_C			0x08
-#  define KEY_V			0x09
-#  define KEY_R			0x0F
-#  define KEY_ESC		0x35
-#  define ARROW_UP		0x7E
-#  define ARROW_DOWN	0x7D
-#  define ARROW_LEFT	0x7B
-#  define ARROW_RIGHT	0x7C
-# endif
+
+
 // # define KEY_W			0x0D
 // # define KEY_S			0x01
 // # define KEY_Z			0x06
