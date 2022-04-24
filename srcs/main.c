@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:45 by lde-alen          #+#    #+#             */
-/*   Updated: 2022/04/24 22:06:24 by lde-alen         ###   ########.fr       */
+/*   Updated: 2022/04/24 22:14:56 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 static int	ft_select(char *name, t_fr *fr)
 {
-	fr->fr.t = 1;
 	if (ft_strncmp(name, "help", ft_strlen("help")) == 0)
 	{
 		ft_print_usage();
@@ -30,7 +29,8 @@ static int	ft_select(char *name, t_fr *fr)
 	else if (ft_strncmp(name, "mandelbrot", ft_strlen("mandelbrot")) == 0
 		&& fr->i == ft_strlen("mandelbrot"))
 		fr->fr.t = 1;
-	else if (ft_strncmp(name, "julia", ft_strlen("julia")) == 0 && fr->ac == 4)
+	else if (ft_strncmp(name, "julia", ft_strlen("julia")) == 0 
+		&& (fr->ac == 4 || fr->ac == 2))
 		fr->fr.t = 2;
 	else if (ft_strncmp(name, "mandelbar", 9) == 0 && fr->i == 10)
 		fr->fr.t = 3;
