@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:45 by lde-alen          #+#    #+#             */
-/*   Updated: 2022/04/24 21:11:05 by lde-alen         ###   ########.fr       */
+/*   Updated: 2022/04/24 22:06:24 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fract_ini(t_fr *fr)
 {
 	fr->fr.xr = -2.60;
 	fr->fr.yi = -1.20;
-	fr->ms.st = 0;
+	fr->ms.st = 1;
 	fr->fr.sc = 300.00;
 	fr->fr.it = 30;
 	fr->fr.w = 0;
@@ -126,7 +126,8 @@ int	main(int ac, char **av)
 		fract_re(&fr);
 		mlx_hook(fr.ml.w, 2, 3, ft_key, &fr);
 		mlx_hook(fr.ml.w, 4, 3, ft_ms, &fr);
-		mlx_hook(fr.ml.w, 6, 3, fract_mod, &fr);
+		mlx_mouse_hook(fr.ml.w, ft_ms, &fr);
+		mlx_hook(fr.ml.w, 6, 1L << 6, fract_mod, &fr);
 		mlx_loop(fr.ml.p);
 	}
 	else
