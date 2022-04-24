@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-alen <lde-alen@student.42.fr>          +#+  +:+       +#+         #
+#    By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/26 13:17:12 by lde-alen          #+#    #+#              #
-#    Updated: 2021/12/03 16:04:17 by lde-alen         ###   ########.fr        #
+#    Updated: 2022/04/24 22:25:14 by lde-alen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,17 +62,19 @@ SRCS_B	=   ft_lstadd_back.c	\
 			ft_lstnew.c			\
 			ft_lstsize.c		\
 
-OBJS	= $(SRCS:.c=.o)
+OBJS	=	$(SRCS:.c=.o)
 
-OBJS_B	= $(SRCS_B:.c=.o)
+OBJS_B	=	$(SRCS_B:.c=.o)
 
-RM		= rm -f
+RM		=	rm -f
 
-LIBC	= ar -rcs
+CC		=	gcc
 
-FLAGS	= -Wall -Wextra -Werror
+LIBC	=	ar -rcs
 
-INCLUDE	= -I.
+FLAGS	=	-Wall -Wextra -Werror
+
+INCLUDE	=	-I.
 
 .c.o	:
 			$(CC) $(FLAGS) -c $< -o $(<:.c=.o) $(INCLUDE)

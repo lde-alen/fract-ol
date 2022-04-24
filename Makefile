@@ -6,22 +6,27 @@
 #    By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 01:16:06 by lde-alen          #+#    #+#              #
-#    Updated: 2022/04/24 22:20:44 by lde-alen         ###   ########.fr        #
+#    Updated: 2022/04/24 22:59:13 by lde-alen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		fractol
 
-LIBFT		=		./libft/libft.a
+LIBFT_NAME	=		libft.a
+LIBFT_DIR	=		./libft
 
-SRCS		=		./srcs/ft_mod.c					\
-					./srcs/ft_fract_extra.c			\
-					./srcs/ft_fract2.c				\
-					./srcs/ft_fract.c				\
-					./srcs/ft_draw.c				\
-					./srcs/main.c					\
+SRCS_DIR	=		./srcs/
 
-OBJS		=		$(SRCS:.c=.o)
+SRCS		=		ft_mod.c				\
+					ft_fract_extra.c		\
+					ft_fract2.c				\
+					ft_fract.c				\
+					ft_draw.c				\
+					main.c					\
+
+OBJS		=		$(addprefix $(SRCS_DIR),$(SRCS:.c=.o))
+OBJS_DIR_N	=		objs
+OBJS_DIR	=		./objs
 
 RM			=		rm -f
 
@@ -29,16 +34,16 @@ CP			=		cp
 
 FLAGS		=		-Wall -Wextra -Werror
 
-# MLX_FLAGS	=		-framework OpenGL -framework AppKit -Ofast
-# MLX_FLAGS	=		-lm -lXext -lX11 -Ofast
+MLX_NAME	=	libmlx.a
+
 
 UNAME := $(shell uname)
 
 ifeq ($(UNAME),Linux)
-	MLX		= ./miniLibx_linux/
+	MLX		= ./miniLibx_linux
 	MLX_COMPIL	= -L $(MLX) -lm -lXext -lX11 -Ofast
 else
-	MLX		= ./miniLibx/
+	MLX		= ./miniLibx
 	MLX_COMPIL	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit -Ofast
 endif
 
@@ -52,22 +57,23 @@ CC			=		gcc
 $(NAME)		:		$(OBJS)
 					$(MAKE) -C ./libft
 					$(MAKE) -C $(MLX)
-					$(CP) $(LIBFT) ./srcs/
-					$(CP) $(MLX)/libmlx.a ./srcs/
-					$(CC) $(MLX_COMPIL) $(FLAGS) $(SRCS) ./srcs/libmlx.a ./srcs/libft.a -o $(NAME)
+					$(CC) $(MLX_COMPIL) $(FLAGS) $(OBJS) $(MLX)/$(MLX_NAME) $(LIBFT_DIR)/$(LIBFT_NAME) -o $(NAME)
+					mkdir -p $(OBJS_DIR_N)
+					mv $(OBJS) $(OBJS_DIR)
 
 all			:		$(NAME)
 
 clean		:
-					$(MAKE) clean -C ./libft
+					$(MAKE) clean -C $(LIBFT_DIR)
 					$(MAKE) clean -C $(MLX)
-					$(RM) $(OBJS)
+					$(RM) -r $(OBJS_DIR)/
+
 
 fclean		:		clean
-					$(MAKE) fclean -C ./libft
+					$(MAKE) fclean -C $(LIBFT_DIR)
 					$(RM) $(NAME)
-					$(RM) ./srcs/libft.a
-					$(RM) ./srcs/libmlx.a
+					$(RM) $(LIBFT_DIR)/$(LIBFT_NAME)
+					$(RM) $(MLX)/$(MLX_NAME)
 
 re			:		fclean all
 
