@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:20 by lde-alen          #+#    #+#             */
-/*   Updated: 2022/04/24 23:02:39 by lde-alen         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:02:52 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 /*
 	Macraaazzzz for the keyboard and mouse both linux and macos
 */
-
 
 # ifdef __linux__
 #  define MLB			1
