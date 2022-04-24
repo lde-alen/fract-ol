@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-alen <lde-alen@student.42.fr>          +#+  +:+       +#+         #
+#    By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 01:16:06 by lde-alen          #+#    #+#              #
-#    Updated: 2021/12/03 19:58:26 by lde-alen         ###   ########.fr        #
+#    Updated: 2022/04/24 20:41:51 by lde-alen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,18 @@ CP			=		cp
 
 FLAGS		=		-Wall -Wextra -Werror
 
-MLX_FLAGS	=		-framework OpenGL -framework AppKit -Ofast
+# MLX_FLAGS	=		-framework OpenGL -framework AppKit -Ofast
+# MLX_FLAGS	=		-lm -lXext -lX11 -Ofast
+
+UNAME := $(shell uname)
+
+ifeq ($(UNAME),Linux)
+	MLX		= ./miniLibx_linux/
+	MLX_LNK	= -L $(MLX) -lm -lXext -lX11 -Ofast
+else
+	MLX		= ./miniLibx/
+	MLX_LNK	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit -Ofast
+endif
 
 INCLUDES	+=		-I./includes/
 
@@ -40,16 +51,16 @@ CC			=		gcc
 
 $(NAME)		:		$(OBJS)
 					$(MAKE) -C ./libft
-					$(MAKE) -C ./minilibx
+					$(MAKE) -C $(MLX)
 					$(CP) $(LIBFT) ./srcs/
-					$(CP) ./minilibx/libmlx.a ./srcs/
-					$(CC) $(MLX_FLAGS) $(FLAGS) $(SRCS) ./srcs/libmlx.a ./srcs/libft.a -o $(NAME)
+					$(CP) $(MLX)/libmlx.a ./srcs/
+					$(CC) $(MLX_LNK) $(FLAGS) $(SRCS) ./srcs/libmlx.a ./srcs/libft.a -o $(NAME)
 
 all			:		$(NAME)
 
 clean		:
 					$(MAKE) clean -C ./libft
-					$(MAKE) clean -C ./minilibx
+					$(MAKE) clean -C $(MLX)
 					$(RM) $(OBJS)
 
 fclean		:		clean
@@ -60,4 +71,4 @@ fclean		:		clean
 
 re			:		fclean all
 
-.PHONY		:		all bonus clean fclean re .c.o
+.PHONY		:		all bonus clean fclean re
