@@ -6,7 +6,7 @@
 /*   By: lde-alen <lde-alen@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:14:20 by lde-alen          #+#    #+#             */
-/*   Updated: 2022/04/24 21:53:40 by lde-alen         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:02:39 by lde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 # else
 #  include "../miniLibx/mlx.h"
 # endif
+
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
+
+/*
+	Macraaazzzz for the keyboard and mouse both linux and macos
+*/
+
 
 # ifdef __linux__
 #  define MLB			1
@@ -61,10 +70,6 @@
 #  define ARROW_LEFT	0x7B
 #  define ARROW_RIGHT	0x7C
 # endif
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <math.h>
 
 /*
 	Structures
@@ -134,34 +139,6 @@ typedef struct s_fr
 # define WIN_H			720
 # define SC_LIM			10000000000
 # define SC_PRC			1.3
-
-/*
-	Macraaazzzz for the Keyboard keys (MacOs QWERTY)
-*/
-
-
-// # define KEY_W			0x0D
-// # define KEY_S			0x01
-// # define KEY_Z			0x06
-// # define KEY_X			0x07
-// # define KEY_C			0x08
-// # define KEY_V			0x09
-// # define KEY_R			0x0F
-// # define KEY_ESC		0x35
-// # define ARROW_UP		0x7E
-// # define ARROW_DOWN		0x7D
-// # define ARROW_LEFT		0x7B
-// # define ARROW_RIGHT	0x7C
-
-/*
-	Macraaazzzz for the Mouse keys (MacOs)
-*/
-
-// # define MLB			0x01
-// # define MRB			0x02
-// # define MMB			0x03
-// # define MWU			0x04
-// # define MWD			0x05
 
 /*
 	Prototypes
